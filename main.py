@@ -3,7 +3,12 @@ from flet import *
 
 def main(page: Page) -> None:
     ...
-    gv = GridView(expand=True, max_extent=150, child_aspect_ratio=1)
+    gv = GridView(
+        expand=True,
+        max_extent=150,
+        child_aspect_ratio=1,
+        col=8,
+    )
     page.add(gv)
 
     for i in range(81):
@@ -11,9 +16,7 @@ def main(page: Page) -> None:
             Container(
                 Text(f"Item {i}"),
                 alignment=alignment.center,
-                bgcolor=colors.AMBER_100,
-                border=border.all(1, colors.AMBER_400),
-                border_radius=border_radius.all(5),
+                bgcolor=colors.GREEN if i % 2 == 0 else colors.WHITE,
             )
         )
     page.update()
