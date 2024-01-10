@@ -6,7 +6,7 @@ def main(page: Page) -> None:
     gv = GridView(expand=True, max_extent=150, child_aspect_ratio=1)
     page.add(gv)
 
-    for i in range(5000):
+    for i in range(81):
         gv.controls.append(
             Container(
                 Text(f"Item {i}"),
