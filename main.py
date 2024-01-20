@@ -29,10 +29,16 @@ def main(page: ft.Page) -> None:
         for piece in new_row:
             row_widget.controls.append(
                 ft.Container(
+                    alignment=ft.Alignment(0.5, 0.5),
                     margin=0,
                     bgcolor=ft.colors.WHITE if painter else ft.colors.GREEN,
                     expand=True,
-                )
+                    content=ft.Image(
+                        f"assets/pieces/{'black' if piece.islower() else 'white'}/{piece}.png"
+                    )
+                    if piece != "."
+                    else None,
+                ),
             )
             painter = not painter
         page.add(row_widget)
