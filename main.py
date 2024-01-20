@@ -7,22 +7,36 @@ board: chess.Board = chess.Board()
 def main(page: ft.Page) -> None:
     page.title = "Chess"
     page.window_center()
-    page.window_height = 600
-    page.window_width = 600
+    page.window_height = 700
+    page.window_width = 700
+    page.window_resizable = False
+    page.window_maximizable = False
+    page.window_minimizable = False
+    page.padding = 0
+    page.spacing = 0
 
     painter: bool = True
 
     for row in str(board).split("\n"):
         new_row = row.split()
 
-        print(new_row)
-        row_widget : ft.Row = ft.Row()
+        row_widget: ft.Row = ft.Row(
+            expand=True,
+            alignment=ft.MainAxisAlignment.CENTER,
+            spacing=0,
+            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+        )
         for piece in new_row:
-
-            painter = not painter
-         page.add(
-                ft.Container(bgcolor=ft.colors.WHITE if painter else ft.colors.GREEN)
+            row_widget.controls.append(
+                ft.Container(
+                    margin=0,
+                    bgcolor=ft.colors.WHITE if painter else ft.colors.GREEN,
+                    expand=True,
+                )
             )
+            painter = not painter
+        page.add(row_widget)
+        painter = not painter
 
     page.update()
 
